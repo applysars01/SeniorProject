@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8ikql82niei7"]
+
+[ext_resource type="Script" path="res://mahjong/script/麻將.gd" id="1_as3uc"]
+[ext_resource type="Texture2D" uid="uid://cjfbwai6abb86" path="res://images/XbpDjx0V38.png" id="2_26pwx"]
+
+[sub_resource type="Animation" id="Animation_ljumq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("正面:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(39, 53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:select_done")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_wtnti"]
+resource_name = "deselect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("正面:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(38, 27), Vector2(39, 53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:select_done")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_30if0"]
+resource_name = "select"
+step = 0.1025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("正面:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(39, 53), Vector2(38, 27)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:select_done")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lu8xl"]
+_data = {
+"RESET": SubResource("Animation_ljumq"),
+"deselect": SubResource("Animation_wtnti"),
+"select": SubResource("Animation_30if0")
+}
+
+[node name="mahjong" type="Container"]
+custom_minimum_size = Vector2(58, 80)
+offset_right = 116.0
+offset_bottom = 160.0
+script = ExtResource("1_as3uc")
+select_done = true
+
+[node name="正面" type="Sprite2D" parent="."]
+position = Vector2(39, 53)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_26pwx")
+region_enabled = true
+region_rect = Rect2(147, 0, 117, 159)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lu8xl")
+}
+autoplay = "RESET"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

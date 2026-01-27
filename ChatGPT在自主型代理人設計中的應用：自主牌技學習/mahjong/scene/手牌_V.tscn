@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlqixjjbw11oc"]
+
+[ext_resource type="Script" path="res://mahjong/script/手牌.gd" id="1_ylaql"]
+
+[node name="手牌_V" type="VBoxContainer"]
+offset_left = 2110.42
+offset_top = 133.333
+offset_right = 2270.42
+offset_bottom = 1131.33
+script = ExtResource("1_ylaql")

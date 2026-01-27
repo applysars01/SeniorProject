@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://hcuv8wlqnpfg"]
+
+[ext_resource type="PackedScene" uid="uid://dlqixjjbw11oc" path="res://mahjong/scene/手牌_V.tscn" id="1_08mf0"]
+
+[node name="player_V" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="手牌_V" parent="." instance=ExtResource("1_08mf0")]
+layout_mode = 0
+offset_left = 1283.0
+offset_top = -8.0
+offset_right = 1363.0
+offset_bottom = 1133.0

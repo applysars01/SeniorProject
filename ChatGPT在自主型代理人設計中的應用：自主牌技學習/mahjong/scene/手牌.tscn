@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckgdpevwkob1t"]
+
+[ext_resource type="Script" path="res://mahjong/script/手牌.gd" id="1_v6xwr"]
+
+[node name="手牌" type="HBoxContainer"]
+offset_left = 704.0
+offset_top = 1125.0
+offset_right = 1702.0
+offset_bottom = 1285.0
+script = ExtResource("1_v6xwr")

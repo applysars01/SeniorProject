@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://df11v4b2ogt1q"]
+
+[ext_resource type="Script" path="res://mahjong/script/主要麻將.gd" id="1_xm6o2"]
+[ext_resource type="PackedScene" uid="uid://so225rpjmrsx" path="res://mahjong/scene/player__h.tscn" id="2_lbdfu"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_xm6o2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="player__H1" parent="CanvasLayer" instance=ExtResource("2_lbdfu")]
+offset_left = 879.0
+offset_top = 1054.0
+offset_right = 638.0
+offset_bottom = 536.0
+
+[node name="player__H2" parent="CanvasLayer" instance=ExtResource("2_lbdfu")]
+offset_left = 2183.0
+offset_top = 1362.0
+offset_right = 1942.0
+offset_bottom = 879.0
+rotation = 4.71239
+
+[node name="player__H3" parent="CanvasLayer" instance=ExtResource("2_lbdfu")]
+offset_left = 1875.0
+offset_top = 501.0
+offset_right = 1634.0
+offset_bottom = -50.0
+rotation = 3.14159
+
+[node name="player__H4" parent="CanvasLayer" instance=ExtResource("2_lbdfu")]
+offset_left = 558.0
+offset_top = 300.0
+offset_right = 317.0
+offset_bottom = -142.0
+rotation = 1.5708

@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://turq2aqib00r"]
+
+[ext_resource type="Texture2D" uid="uid://msilqfoieiui" path="res://images/nn.png" id="1_6v7bg"]
+[ext_resource type="Script" path="res://Scene/NPC_test.gd" id="1_yem88"]
+[ext_resource type="Script" path="res://class_test/NPC_StateMachine.gd" id="3_y4mxa"]
+[ext_resource type="Script" path="res://class_test/IDEL.gd" id="4_t5r1w"]
+[ext_resource type="Script" path="res://class_test/RELAX.gd" id="5_q5uyv"]
+[ext_resource type="Script" path="res://class_test/SLEEP.gd" id="6_fc8n3"]
+[ext_resource type="Script" path="res://class_test/MOVING.gd" id="7_eat4i"]
+[ext_resource type="Script" path="res://class_test/WORKING.gd" id="8_vlucx"]
+[ext_resource type="Script" path="res://class_test/EAT.gd" id="9_kajqd"]
+[ext_resource type="Script" path="res://class_test/massage.gd" id="10_jvjsl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0fc0"]
+radius = 24.3311
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30w30"]
+size = Vector2(187, 159)
+
+[node name="NPC_test" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_yem88")
+myMap = null
+
+[node name="NPC_StateMachine" type="Node" parent="."]
+script = ExtResource("3_y4mxa")
+
+[node name="IDLE" type="Node" parent="NPC_StateMachine"]
+script = ExtResource("4_t5r1w")
+
+[node name="RELAX" type="Node" parent="NPC_StateMachine"]
+script = ExtResource("5_q5uyv")
+
+[node name="SLEEP" type="Node" parent="NPC_StateMachine"]
+script = ExtResource("6_fc8n3")
+
+[node name="MOVING" type="Node" parent="NPC_StateMachine"]
+script = ExtResource("7_eat4i")
+
+[node name="WORKING" type="Node" parent="NPC_StateMachine"]
+script = ExtResource("8_vlucx")
+
+[node name="EAT" type="Node" parent="NPC_StateMachine"]
+script = ExtResource("9_kajqd")
+
+[node name="send_message" type="Node" parent="NPC_StateMachine"]
+script = ExtResource("10_jvjsl")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="NPC_StateMachine"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+texture = ExtResource("1_6v7bg")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_r0fc0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 14.0
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Perception" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_30w30")
+
+[connection signal="request_completed" from="NPC_StateMachine/HTTPRequest" to="NPC_StateMachine/send_message" method="_on_http_request_request_completed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
