@@ -1,7 +1,7 @@
 extends Node
 
 var url:String = "https://api.openai.com/v1/chat/completions"
-var apiKey:String = "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"
+var apiKey:String = ""
 var header = ["Content-Type: application/json", "Authorization: Bearer "+ apiKey]
 var maxtoken = 128
 var temperature = 0.8
