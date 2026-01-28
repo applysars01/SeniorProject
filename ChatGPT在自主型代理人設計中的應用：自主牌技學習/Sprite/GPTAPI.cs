@@ -14,7 +14,7 @@ public partial class GPTAPI : Node
 
 	public async Task SendRequest(string inputMassage) {
 		string url = "https://api.openai.com/v1/chat/completions";
-		string key = "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";
+		string key = "";
 		var messages = new[]
 		{
 			new { role = "user",content = inputMassage }
